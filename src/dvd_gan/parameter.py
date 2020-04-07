@@ -56,8 +56,8 @@ def get_parameters():
 
     # epoch size
     parser.add_argument('--log_epoch', type=int, default=1)
-    parser.add_argument('--sample_epoch', type=int, default=2)
-    parser.add_argument('--model_save_epoch', type=int, default=2)
+    parser.add_argument('--sample_epoch', type=int, default=1)
+    parser.add_argument('--model_save_epoch', type=int, default=1)
 
     # Dataloader
     parser.add_argument('--norm_value', type=int, default=255)
