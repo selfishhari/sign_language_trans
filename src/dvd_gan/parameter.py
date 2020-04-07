@@ -43,10 +43,10 @@ def get_parameters():
     parser.add_argument('-g', '--gpus', default="0", nargs='+', type=str, help='Specify GPU ids.')
     parser.add_argument('--dataset', type=str, default='ucf101', choices=['ucf101', 'kinetics','activitynet', 'hmdb51'])
     parser.add_argument('--use_tensorboard', type=str2bool, default=False)
-    parser.add_argument('--n_class', type=int, default=10)
+    parser.add_argument('--n_class', type=int, default=4)
     parser.add_argument('--k_sample', type=int, default=64)
     parser.add_argument('--n_frames', type=int, default=24)
-    parser.add_argument('--test_batch_size', type=int, default=8, help='how many batchsize for test and sample')
+    parser.add_argument('--test_batch_size', type=int, default=1, help='how many batchsize for test and sample')
 
     # Path
     parser.add_argument('--image_path', type=str, default='data/outputs/dvd_gan_images/')
