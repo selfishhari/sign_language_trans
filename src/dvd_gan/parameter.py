@@ -40,18 +40,18 @@ def get_parameters():
     # Misc
     parser.add_argument('--train', type=str2bool, default=True)
     parser.add_argument('--parallel', type=str2bool, default=False)
-    parser.add_argument('-g', '--gpus', default=[], nargs='+', type=str, help='Specify GPU ids.')
+    parser.add_argument('-g', '--gpus', default="1", nargs='+', type=str, help='Specify GPU ids.')
     parser.add_argument('--dataset', type=str, default='ucf101', choices=['ucf101', 'kinetics','activitynet', 'hmdb51'])
     parser.add_argument('--use_tensorboard', type=str2bool, default=False)
-    parser.add_argument('--n_class', type=int, default=101)
+    parser.add_argument('--n_class', type=int, default=10)
     parser.add_argument('--k_sample', type=int, default=64)
     parser.add_argument('--n_frames', type=int, default=24)
     parser.add_argument('--test_batch_size', type=int, default=8, help='how many batchsize for test and sample')
 
     # Path
-    parser.add_argument('--image_path', type=str, default='./data')
-    parser.add_argument('--log_path', type=str, default='./logs')
-    parser.add_argument('--model_save_path', type=str, default='./models')
+    parser.add_argument('--image_path', type=str, default='../../data/outputs/dvd_gan_images/')
+    parser.add_argument('--log_path', type=str, default='../../data/outputs/dvd_gan_logs/')
+    parser.add_argument('--model_save_path', type=str, default='../../data/models/')
     parser.add_argument('--sample_path', type=str, default='./samples')
 
     # epoch size
@@ -63,10 +63,10 @@ def get_parameters():
     parser.add_argument('--norm_value', type=int, default=255)
     parser.add_argument('--no_mean_norm', action='store_true', default=True)
     parser.add_argument('--std_norm', action='store_true', default=False)
-    parser.add_argument('--mean_dataset', type=str, default='activitynet')
-    parser.add_argument('--root_path', type=str, default='/tmp4/potter/UCF101')
-    parser.add_argument('--video_path', type=str, default='videos_jpeg')
-    parser.add_argument('--annotation_path', type=str, default='annotation/ucf101_01.json')
+    parser.add_argument('--mean_dataset', type=str, default='ucf101')
+    parser.add_argument('--root_path', type=str, default='../../')
+    parser.add_argument('--video_path', type=str, default='data/processed/ucf101_jpg')
+    parser.add_argument('--annotation_path', type=str, default='data/raw/ucfTrainTestlist/ucf101_01.json')
     parser.add_argument('--train_crop', type=str, default='corner') #corner | random | center
     parser.add_argument('--sample_size', type=int, default=64)
 
@@ -74,6 +74,6 @@ def get_parameters():
     parser.add_argument('--n_scales', type=int, default=5)
     parser.add_argument('--scale_step', type=float, default=0.84089641525)
 
-    config = parser.parse_args()
+    config = parser.parse_args("")
 
     return config
