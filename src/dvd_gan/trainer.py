@@ -194,7 +194,7 @@ class Trainer(object):
 
         fixed_z = torch.randn(self.test_batch_size * self.n_class, self.z_dim).to(self.device)
         # fixed_label = torch.randint(low=0, high=self.n_class, size=(self.test_batch_size, )).to(self.device)
-        fixed_label = torch.tensor([i for i in range(self.n_class) for j in range(self.test_batch_size)])
+        fixed_label = torch.tensor([i for i in range(self.n_class) for j in range(self.test_batch_size)]).to(self.device)
 
         # Start with trained model
         if self.pretrained_model:
