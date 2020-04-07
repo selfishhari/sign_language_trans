@@ -49,9 +49,9 @@ def get_parameters():
     parser.add_argument('--test_batch_size', type=int, default=8, help='how many batchsize for test and sample')
 
     # Path
-    parser.add_argument('--image_path', type=str, default='../../data/outputs/dvd_gan_images/')
-    parser.add_argument('--log_path', type=str, default='../../data/outputs/dvd_gan_logs/')
-    parser.add_argument('--model_save_path', type=str, default='../../data/models/')
+    parser.add_argument('--image_path', type=str, default='data/outputs/dvd_gan_images/')
+    parser.add_argument('--log_path', type=str, default='data/outputs/dvd_gan_logs/')
+    parser.add_argument('--model_save_path', type=str, default='data/models/')
     parser.add_argument('--sample_path', type=str, default='./samples')
 
     # epoch size
@@ -64,7 +64,7 @@ def get_parameters():
     parser.add_argument('--no_mean_norm', action='store_true', default=True)
     parser.add_argument('--std_norm', action='store_true', default=False)
     parser.add_argument('--mean_dataset', type=str, default='ucf101')
-    parser.add_argument('--root_path', type=str, default='../../')
+    parser.add_argument('--root_path', type=str, default='.')
     parser.add_argument('--video_path', type=str, default='data/processed/ucf101_jpg')
     parser.add_argument('--annotation_path', type=str, default='data/raw/ucfTrainTestlist/ucf101_01.json')
     parser.add_argument('--train_crop', type=str, default='corner') #corner | random | center
