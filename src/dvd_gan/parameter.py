@@ -52,7 +52,7 @@ def get_parameters():
     parser.add_argument('--image_path', type=str, default='data/outputs/dvd_gan_images/')
     parser.add_argument('--log_path', type=str, default='data/outputs/dvd_gan_logs/')
     parser.add_argument('--model_save_path', type=str, default='data/models/')
-    parser.add_argument('--sample_path', type=str, default='data/outputs/dvd_gan_images/')
+    parser.add_argument('--sample_path', type=str, default='data/outputs/dvd_gan_saved_images/')
 
     # epoch size
     parser.add_argument('--log_epoch', type=int, default=1)
