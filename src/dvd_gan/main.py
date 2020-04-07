@@ -2,7 +2,7 @@ from trainer import Trainer
 # from tester import Tester
 from data_loader import Data_Loader
 from torch.backends import cudnn
-from utils import make_folder
+from torch_utils import make_folder
 from parameter import get_parameters
 
 import os

@@ -8,7 +8,7 @@ from torch.optim.lr_scheduler import ExponentialLR, ReduceLROnPlateau, StepLR, M
 
 from Module.Generator import Generator
 from Module.Discriminators import SpatialDiscriminator, TemporalDiscriminator
-from utils import *
+from torch_utils import *
 
 
 class Trainer(object):
