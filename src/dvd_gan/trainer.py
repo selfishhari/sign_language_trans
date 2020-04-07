@@ -336,11 +336,11 @@ class Trainer(object):
             # Save model
             if step % self.model_save_step == 0:
                 torch.save(self.G.state_dict(),
-                           os.path.join(self.model_save_path, '{}_G.pth'.format(step)))
+                           os.path.join(self.model_save_path, '{}_G.pth'.format("step")))
                 torch.save(self.D_s.state_dict(),
-                           os.path.join(self.model_save_path, '{}_Ds.pth'.format(step)))
+                           os.path.join(self.model_save_path, '{}_Ds.pth'.format("step")))
                 torch.save(self.D_t.state_dict(),
-                           os.path.join(self.model_save_path, '{}_Dt.pth'.format(step)))
+                           os.path.join(self.model_save_path, '{}_Dt.pth'.format("step")))
 
     def build_model(self):
 

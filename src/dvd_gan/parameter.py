@@ -20,7 +20,7 @@ def get_parameters():
     parser.add_argument('--d_conv_dim', type=int, default=64)
     parser.add_argument('--lambda_gp', type=float, default=10)
     parser.add_argument('--lr_schr', type=str, default='const', choices=['const', 'step', 'exp', 'multi', 'reduce'])
-    parser.add_argument('--version', type=str, default='')
+    parser.add_argument('--version', type=str, default='1')
 
     # Training setting
     parser.add_argument('--total_epoch', type=int, default=100000, help='how many times to update the generator')
@@ -52,12 +52,12 @@ def get_parameters():
     parser.add_argument('--image_path', type=str, default='data/outputs/dvd_gan_images/')
     parser.add_argument('--log_path', type=str, default='data/outputs/dvd_gan_logs/')
     parser.add_argument('--model_save_path', type=str, default='data/models/')
-    parser.add_argument('--sample_path', type=str, default='./samples')
+    parser.add_argument('--sample_path', type=str, default='data/outputs/dvd_gan_images/')
 
     # epoch size
     parser.add_argument('--log_epoch', type=int, default=1)
-    parser.add_argument('--sample_epoch', type=int, default=20)
-    parser.add_argument('--model_save_epoch', type=int, default=200)
+    parser.add_argument('--sample_epoch', type=int, default=2)
+    parser.add_argument('--model_save_epoch', type=int, default=2)
 
     # Dataloader
     parser.add_argument('--norm_value', type=int, default=255)
