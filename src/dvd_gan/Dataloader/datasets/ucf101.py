@@ -81,6 +81,7 @@ def get_video_names_and_annotations(data, subset):
 
 def make_dataset(root_path, annotation_path, subset, n_samples_for_each_video,
                  sample_duration):
+    print("in make dataset")
     data = load_annotation_data(annotation_path)
     video_names, annotations = get_video_names_and_annotations(data, subset)
     class_to_idx = get_class_labels(data)
@@ -173,6 +174,7 @@ class UCF101(data.Dataset):
         self.temporal_transform = temporal_transform
         self.target_transform = target_transform
         self.loader = get_loader()
+        print("ucf101 init done")
 
     def __getitem__(self, index):
         """

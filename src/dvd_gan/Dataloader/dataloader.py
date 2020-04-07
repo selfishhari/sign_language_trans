@@ -7,6 +7,8 @@ from Dataloader.datasets.hmdb51 import HMDB51
 def get_training_set(opt, spatial_transform, temporal_transform,
                      target_transform):
     assert opt.dataset in ['kinetics', 'activitynet', 'ucf101', 'hmdb51']
+    
+    print("in get_training_set")
 
     if opt.dataset == 'kinetics':
         training_data = Kinetics(
@@ -26,6 +28,7 @@ def get_training_set(opt, spatial_transform, temporal_transform,
             temporal_transform=temporal_transform,
             target_transform=target_transform)
     elif opt.dataset == 'ucf101':
+        print("ucf101")
         training_data = UCF101(
             opt.video_path,
             opt.annotation_path,

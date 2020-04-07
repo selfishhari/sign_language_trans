@@ -23,12 +23,15 @@ from Dataloader.mean import get_mean
 
 def main(config):
     # For fast training
+    print("in main function")
     cudnn.benchmark = True
 
     ##### Dataloader #####
     config.video_path = os.path.join(config.root_path, config.video_path)
     config.annotation_path = os.path.join(config.root_path, config.annotation_path)
     config.mean = get_mean(config.norm_value, dataset=config.mean_dataset)
+    
+    print("got dataset means")
 
     if config.no_mean_norm and not config.std_norm:
         norm_method = Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
@@ -38,6 +41,10 @@ def main(config):
     config.scales = [config.initial_scale]
     for i in range(1, config.n_scales):
         config.scales.append(config.scales[-1] * config.scale_step)
+        
+    print("scales", config.scales)
+    
+    print("train?", config.train)
 
     if config.train:
         assert config.train_crop in ['random', 'corner', 'center']
@@ -48,6 +55,9 @@ def main(config):
         elif config.train_crop == 'center':
             crop_method = MultiScaleCornerCrop(
                 config.scales, config.sample_size, crop_positions=['c'])
+        
+        print("special transform setting...")
+        
         spatial_transform = Compose([
             crop_method,
             RandomHorizontalFlip(),
@@ -55,6 +65,8 @@ def main(config):
         ])
         temporal_transform = TemporalRandomCrop(config.n_frames)
         target_transform = ClassLabel()
+        
+        print(spatial_transform, temporal_transform, target_transform)
 
         print("="*30,"\nLoading data...")
         training_data = get_training_set(config, spatial_transform,
