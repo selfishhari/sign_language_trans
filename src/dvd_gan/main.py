@@ -23,7 +23,6 @@ from Dataloader.mean import get_mean
 
 def main(config):
     # For fast training
-    print("in main function")
     cudnn.benchmark = True
 
     ##### Dataloader #####
@@ -31,7 +30,6 @@ def main(config):
     config.annotation_path = os.path.join(config.root_path, config.annotation_path)
     config.mean = get_mean(config.norm_value, dataset=config.mean_dataset)
     
-    print("got dataset means")
 
     if config.no_mean_norm and not config.std_norm:
         norm_method = Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
@@ -42,9 +40,6 @@ def main(config):
     for i in range(1, config.n_scales):
         config.scales.append(config.scales[-1] * config.scale_step)
         
-    print("scales", config.scales)
-    
-    print("train?", config.train)
 
     if config.train:
         assert config.train_crop in ['random', 'corner', 'center']
@@ -104,7 +99,7 @@ def main(config):
     # config.n_class = len(glob.glob(os.path.join(config.root_path, config.video_path)))
 
     ## Data loader
-    print('number class:', config.n_class)
+    print('number of class:', config.n_class)
     # # Data loader
     # data_loader = Data_Loader(config.train, config.dataset, config.image_path, config.imsize,
     #                          config.batch_size, shuf=config.train)

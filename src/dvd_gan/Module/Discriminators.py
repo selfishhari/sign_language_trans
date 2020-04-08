@@ -241,20 +241,16 @@ class SpatialDiscriminator(nn.Module):
 
     def forward(self, x, class_id):
         # reshape input tensor from BxTxCxHxW to BTxCxHxW
-        print("Inside DS")
         
         print(class_id)
         batch_size, T, C, W, H = x.size()
         
-        print("got size", x.size())
 
         x = x.view(batch_size * T, C, H, W)
         
-        print("reshaped", x.size())
 
         out = self.pre_conv(x)
         
-        print("pre_conved")
         out = out + self.pre_skip(F.avg_pool2d(x, 2))
 
 

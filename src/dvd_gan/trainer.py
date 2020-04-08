@@ -239,58 +239,36 @@ class Trainer(object):
                 z_class = self.label_sample()
                 fake_videos = self.G(z, z_class)
                 
-                print("training disc")
                 # ================== Train D_s ================== #
                 fake_videos_sample = sample_k_frames(fake_videos, self.n_frames, self.k_sample)
                 ds_out_real = self.D_s(real_videos_sample, real_labels)
-                print("got ds real")
                 ds_out_fake = self.D_s(fake_videos_sample.detach(), z_class)
                 
-                print("got ds fake")
                 ds_loss_real = self.calc_loss(ds_out_real, True)
-                print("calc ds real")
                 ds_loss_fake = self.calc_loss(ds_out_fake, False)
-                print("calc ds false")
 
                 # Backward + Optimize
                 ds_loss = ds_loss_real + ds_loss_fake
-                print("total loass")
                 self.reset_grad()
-                print("reset grad")
                 ds_loss.backward()
-                print("back")
                 self.ds_optimizer.step()
-                print("opt step")
                 self.ds_lr_scher.step()
-                print("lr step")
                 
                 
-                print("Training Dt")
                 # ================== Train D_t ================== #
                 real_videos_downsample = vid_downsample(real_videos)
-                print("real vids down")
                 fake_videos_downsample = vid_downsample(fake_videos)
-                print("fake vids down")
                 dt_out_real = self.D_t(real_videos_downsample, real_labels)
-                print("got dt r")
                 dt_out_fake = self.D_t(fake_videos_downsample.detach(), z_class)
-                print("got dt f")
                 dt_loss_real = self.calc_loss(dt_out_real, True)
-                print("got dt loss r")
                 dt_loss_fake = self.calc_loss(dt_out_fake, False)
-                print("got dt loss f")
 
                 # Backward + Optimize
                 dt_loss = dt_loss_real + dt_loss_fake
-                print("got dt loss total")
                 self.reset_grad()
-                print("reset dt")
                 dt_loss.backward()
-                print("dt back")
                 self.dt_optimizer.step()
-                print("dt step")
                 self.dt_lr_scher.step()
-                print("lr step")
 
                 # ================== Use wgan_gp ================== #
                 # if self.adv_loss == "wgan_gp":
@@ -316,18 +294,12 @@ class Trainer(object):
                 #     fake_videos_downsample = vid_downsample(fake_videos)
 
             # =========== Train G and Gumbel noise =========== #
-            print("traing g")
             # Compute loss with fake images
             g_s_out_fake = self.D_s(fake_videos_sample, z_class)  # Spatial Discrimminator loss
-            print("got ds g r")
             g_t_out_fake = self.D_t(fake_videos_downsample, z_class)  # Temporal Discriminator loss
-            print("got dt g f")
             g_s_loss = self.calc_loss(g_s_out_fake, True)
-            print("loss")
             g_t_loss = self.calc_loss(g_t_out_fake, True)
-            print("got ds loss")
             g_loss = g_s_loss + g_t_loss
-            print("total")
             # g_loss = self.calc_loss(g_s_out_fake, True) + self.calc_loss(g_t_out_fake, True)
 
             # Backward + Optimize
@@ -335,7 +307,6 @@ class Trainer(object):
             g_loss.backward()
             self.g_optimizer.step()
             self.g_lr_scher.step()
-            print("ds backward")
 
             # ==================== print & save part ==================== #
             # Print out log info
@@ -360,7 +331,7 @@ class Trainer(object):
                         if self.use_tensorboard is True:
                             self.writer.add_image("Class_%d_No.%d/Step_%d" % (i, j, step), make_grid(denorm(fake_videos[i].data)), step)
                         else:
-                            save_image(denorm(fake_videos[i].data), os.path.join(self.sample_path, "generated_image_{}".format(str(step))))
+                            save_image(denorm(fake_videos[i].data), os.path.join(self.sample_path, "generated_image_{}.png".format(str(step))))
                             break
                 # print('Saved sample images {}_fake.png'.format(step))
                 self.G.train()

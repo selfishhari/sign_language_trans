@@ -8,7 +8,6 @@ def get_training_set(opt, spatial_transform, temporal_transform,
                      target_transform):
     assert opt.dataset in ['kinetics', 'activitynet', 'ucf101', 'hmdb51']
     
-    print("in get_training_set")
 
     if opt.dataset == 'kinetics':
         training_data = Kinetics(
