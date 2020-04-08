@@ -83,8 +83,12 @@ def make_dataset(root_path, annotation_path, subset, n_samples_for_each_video,
                  sample_duration):
     print("in make dataset")
     data = load_annotation_data(annotation_path)
+    print("="*10, "\nPrinting annotations")
+    print(data)
     video_names, annotations = get_video_names_and_annotations(data, subset)
+    print(video_names)
     class_to_idx = get_class_labels(data)
+    print(class_to_idx)
     idx_to_class = {}
     for name, label in class_to_idx.items():
         idx_to_class[label] = name
@@ -169,6 +173,8 @@ class UCF101(data.Dataset):
         self.data, self.class_names = make_dataset(
             root_path, annotation_path, subset, n_samples_for_each_video,
             sample_duration)
+        
+        print("Data Loader class names",self.class_names)
 
         self.spatial_transform = spatial_transform
         self.temporal_transform = temporal_transform
