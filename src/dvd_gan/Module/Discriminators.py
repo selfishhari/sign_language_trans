@@ -242,7 +242,7 @@ class SpatialDiscriminator(nn.Module):
     def forward(self, x, class_id):
         # reshape input tensor from BxTxCxHxW to BTxCxHxW
         
-        print(class_id)
+        #print(class_id)
         batch_size, T, C, W, H = x.size()
         
 

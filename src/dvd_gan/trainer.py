@@ -85,7 +85,7 @@ class Trainer(object):
         label = torch.randint(low=0, high=self.n_class, size=(self.batch_size, ))
         # label = torch.LongTensor(self.batch_size, 1).random_()%self.n_class
         # one_hot= torch.zeros(self.batch_size, self.n_class).scatter_(1, label, 1)
-        print(label)
+        #print(label)
         return label.to(self.device)  # , one_hot.to(self.device)
 
     def wgan_loss(self, real_img, fake_img, tag):
@@ -329,9 +329,9 @@ class Trainer(object):
                 for i in range(self.n_class):
                     for j in range(self.test_batch_size):
                         if self.use_tensorboard is True:
-                            self.writer.add_image("Class_%d_No.%d/Step_%d" % (i, j, step), make_grid(denorm(fake_videos[i].data)), step)
+                            self.writer.add_image("Class_%d_No.%d/Step_%d" % (i, j, step), make_grid(denorm(fake_videos[0].data)), step)
                         else:
-                            save_image(denorm(fake_videos[i].data), os.path.join(self.sample_path, "generated_image_{}.png".format(str(step))))
+                            save_image(denorm(fake_videos[0].data), os.path.join(self.sample_path, "generated_image_{}.png".format(str(step))))
                             break
                 # print('Saved sample images {}_fake.png'.format(step))
                 self.G.train()
