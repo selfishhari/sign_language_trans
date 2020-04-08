@@ -85,6 +85,7 @@ class Trainer(object):
         label = torch.randint(low=0, high=self.n_class, size=(self.batch_size, ))
         # label = torch.LongTensor(self.batch_size, 1).random_()%self.n_class
         # one_hot= torch.zeros(self.batch_size, self.n_class).scatter_(1, label, 1)
+        print(label)
         return label.to(self.device)  # , one_hot.to(self.device)
 
     def wgan_loss(self, real_img, fake_img, tag):
