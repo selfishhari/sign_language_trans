@@ -194,7 +194,7 @@ class Trainer(object):
 
         fixed_z = torch.randn(self.test_batch_size * self.n_class, self.z_dim).to(self.device)
         # fixed_label = torch.randint(low=0, high=self.n_class, size=(self.test_batch_size, )).to(self.device)
-        fixed_label = torch.tensor([i for i in range(self.n_class) for j in range(self.test_batch_size)]).to(self.device)
+        fixed_label = torch.tensor([i for i in range(self.n_class) for j in range(self.test_batch_size)])#.to(self.device)
 
         # Start with trained model
         if self.pretrained_model:
@@ -329,7 +329,8 @@ class Trainer(object):
                         if self.use_tensorboard is True:
                             self.writer.add_image("Class_%d_No.%d/Step_%d" % (i, j, step), make_grid(denorm(fake_videos[i * self.test_batch_size + j].data)), step)
                         else:
-                            save_image(denorm(fake_videos[i * self.test_batch_size + j].data), os.path.join(self.sample_path, "Class_%d_No.%d_Step_%d" % (i, j, step)))
+                            save_image(denorm(fake_videos[0].data), os.path.join(self.sample_path, "generated_image_{}".format(str(step))))
+                            break
                 # print('Saved sample images {}_fake.png'.format(step))
                 self.G.train()
 
