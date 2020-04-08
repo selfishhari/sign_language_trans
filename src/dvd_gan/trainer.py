@@ -353,7 +353,7 @@ class Trainer(object):
             # Sample images
             if step % self.sample_step == 0:
                 self.G.eval()
-                fake_videos = self.G(fixed_z, fixed_label)
+                #fake_videos = self.G(fixed_z, fixed_label)
 
                 for i in range(self.n_class):
                     for j in range(self.test_batch_size):
