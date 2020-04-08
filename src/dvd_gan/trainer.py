@@ -199,7 +199,7 @@ class Trainer(object):
 
         # Start with trained model
         if self.pretrained_model:
-            start = self.pretrained_model + 1
+            start = 1
         else:
             start = 1
 
